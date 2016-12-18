@@ -39,12 +39,14 @@ services:
     image: php:5.6-fpm-alpine
     volumes_from:
       - data
+    environment:
+      - ENCRYPTION_KEY=609dd9ac1b784a6787312bd6
   data:
     build:
-      context: .
-      dockerfile: rainloop/Dockerfile
+      context: roundcube
     volumes:
-      - /rainloop
+      - /web
+      - /rc
 
 volumes:
   maildata:

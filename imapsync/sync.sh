@@ -1,5 +1,6 @@
 #!/bin/bash
 IMAPSYNC=/usr/bin/imapsync
+exit
 
 sleep 30
 
