@@ -1,18 +1,20 @@
 #!/bin/bash
 IMAPSYNC=/usr/bin/imapsync
-exit
 
-sleep 30
+while ! nc -q 1 mail 143 </dev/null; do
+  echo "Waiting for mail server to become ready. Retring in 5 seconds..."
+  sleep 5
+done
 
 while true; do
   $IMAPSYNC \
-    --host1 imap.1und1.de \
-    --user1 dennis@port42.org \
-    --password1 'TzTGMkMmVtMREza8mO!hK' \
+    --host1 ${IMAPSYNC_HOST1} \
+    --user1 ${IMAPSYNC_USER1} \
+    --password1 "${IMAPSYNC_PASSWORD1}" \
     --authmech1 PLAIN --tls1 \
     --host2 mail \
-    --user2 dennis@port42.org \
-    --password2 'test1234' \
+    --user2 ${IMAPSYNC_USER2} \
+    --password2 "${IMAPSYNC_PASSWORD2}" \
     --authmech2 PLAIN --tls2
-  sleep 3600
+  sleep ${IMAPSYNC_WAIT}
 done

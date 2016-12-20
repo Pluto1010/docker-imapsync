@@ -7,6 +7,8 @@ services:
       context: imapsync
     links:
       - "mail"
+    env_file:
+      - imapsync.env
   mail:
     hostname: mail
     domainname: imapsync.local
