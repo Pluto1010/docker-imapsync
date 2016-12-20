@@ -1,6 +1,6 @@
 FROM busybox
 
-RUN mkdir -p /web /rc/tmp /rc/logs && chmod -R 777 /rc
+RUN mkdir /web /rc
 
 ADD https://github.com/roundcube/roundcubemail/releases/download/1.2.3/roundcubemail-1.2.3-complete.tar.gz /tmp
 RUN ARCHIVE=/tmp/roundcubemail-1.2.3-complete.tar.gz && \
@@ -11,5 +11,7 @@ RUN ARCHIVE=/tmp/roundcubemail-1.2.3-complete.tar.gz && \
   rm -fr /web/installer
 
 ADD config.inc.php /web/config/
+ADD launch.sh /launch.sh
 
 VOLUME /rc
+CMD [ "sh", "/launch.sh" ]
