@@ -1,27 +1,21 @@
 version: '2'
 
 services:
-  imapsync:
-    hostname: imapsync
-    build:
-      context: imapsync
-    links:
-      - "mail"
-    env_file:
-      - imapsync.env
-  mail:
-    hostname: mail
-    domainname: imapsync.local
+  mailbackup:
+    hostname: mailbackup
+    domainname: mailbackup.local
     build:
       context: mailsrv
     ports:
-      #- "25:25"
       - "143:143"
-      - "587:587"
-      - "993:993"
+      #- "25:25"
+      #- "587:587"
+      #- "993:993"
     volumes:
       - maildata:/var/mail
-      - mailconfig:/tmp/docker-mailserver/
+      - ./config:/tmp/docker-mailserver/
+    env_file:
+      - imapsync.env
     environment:
       - ENABLE_FAIL2BAN=1
     cap_add:
@@ -33,18 +27,18 @@ services:
     ports:
       - "8080:80"
     volumes_from:
-      - data
+      - webdata
     links:
       - "php"
-      - "mail"
+      - "mailbackup"
   php:
     hostname: php
     image: php:5.6-fpm-alpine
     volumes_from:
-      - data
+      - webdata
     environment:
       - ENCRYPTION_KEY=609dd9ac1b784a6787312bd6
-  data:
+  webdata:
     build:
       context: roundcube
     volumes:
@@ -53,6 +47,4 @@ services:
 
 volumes:
   maildata:
-    driver: local
-  mailconfig:
     driver: local
