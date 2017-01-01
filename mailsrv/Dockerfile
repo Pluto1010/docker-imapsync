@@ -8,7 +8,7 @@ RUN apt-get update && \
 										git libmail-imapclient-perl libdigest-md5-file-perl \
 										libterm-readkey-perl libfile-copy-recursive-perl \
 										build-essential make automake libunicode-string-perl \
-										duplicity
+										duplicity afpfs-ng-utils
 
 RUN git clone git://github.com/imapsync/imapsync.git --depth 1
 

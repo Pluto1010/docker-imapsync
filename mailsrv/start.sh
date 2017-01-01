@@ -11,7 +11,6 @@ while true; do
   done
 
   $IMAPSYNC \
-    --dry \
     --folder INBOX \
     --host1 ${IMAPSYNC_HOST1} \
     --user1 ${IMAPSYNC_USER1} \
@@ -20,7 +19,7 @@ while true; do
     --host2 mailbackup \
     --user2 ${IMAPSYNC_USER2} \
     --password2 "${IMAPSYNC_PASSWORD2}" \
-    --authmech2 PLAIN --tls2
+    --authmech2 PLAIN --tls2 $OPTIONS
 
   sleep 5
 
