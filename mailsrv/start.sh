@@ -4,6 +4,9 @@
 sleep 30
 IMAPSYNC=/usr/bin/imapsync
 
+export PASSPHRASE=$DUPLICITY_GPG_PASSPHRASE
+export FTP_PASSWORD=$DUPLICITY_FTP_PASSWORD
+
 while true; do
   while ! nc -q 1 mailbackup 143 </dev/null; do
     echo "Waiting for mail server to become ready. Retring in 5 seconds..."
@@ -23,7 +26,7 @@ while true; do
 
   sleep 5
 
-  duplicity
+  duplicity --progress /var/mail $DUPLICITY_FTP_URL
 
   sleep ${IMAPSYNC_WAIT}
 done
