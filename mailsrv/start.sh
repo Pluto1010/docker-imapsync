@@ -15,7 +15,6 @@ while true; do
 
   SLOT=$(date +"%Y%W")
   $IMAPSYNC \
-    --folder INBOX \
     --host1 ${IMAPSYNC_HOST1} \
     --user1 ${IMAPSYNC_USER1} \
     --password1 "${IMAPSYNC_PASSWORD1}" \

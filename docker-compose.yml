@@ -7,7 +7,7 @@ services:
     build:
       context: mailsrv
     ports:
-      - "143:143"
+      - "8143:143"
       #- "25:25"
       #- "587:587"
       #- "993:993"
@@ -36,8 +36,10 @@ services:
     image: php:5.6-fpm-alpine
     volumes_from:
       - webdata
+    env_file:
+      - imapsync.env
     environment:
-      - ENCRYPTION_KEY=609dd9ac1b784a6787312bd6
+      - ENCRYPTION_KEY
   webdata:
     build:
       context: roundcube
