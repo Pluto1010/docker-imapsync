@@ -26,7 +26,7 @@ while true; do
 
   sleep 5
 
-  duplicity --progress /var/mail ${DUPLICITY_FTP_URL}/${SLOT}
+  duplicity /var/mail ${DUPLICITY_FTP_URL}/${SLOT}
 
   sleep ${IMAPSYNC_WAIT}
 done

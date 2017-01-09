@@ -19,6 +19,8 @@ RUN cd imapsync/ && \
 RUN cd imapsync/ && \
 	make install
 
+ADD 11-ssl-ciphers.conf /etc/dovecot/conf.d/11-ssl-ciphers.conf
+
 ADD start.sh /start.sh
 
 RUN chmod +x /start.sh
