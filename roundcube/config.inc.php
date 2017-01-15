@@ -29,7 +29,7 @@ $config['db_dsnw'] = 'sqlite:////rc/roundcubemail.sqlite?mode=0640';
 //          required to match old user data records with the new host.
 
 // $config['default_host'] = 'ssl://your-imap-server';
-$config['default_host'] = 'tls://mail';
+$config['default_host'] = 'tls://mailbackup:143';
 
 // required to ignore SSL cert. verification
 // see: https://bbs.archlinux.org/viewtopic.php?id=187063

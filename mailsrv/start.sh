@@ -15,7 +15,6 @@ while true; do
 
   SLOT=$(date +"%Y%W")
   $IMAPSYNC \
-    --folder INBOX \
     --host1 ${IMAPSYNC_HOST1} \
     --user1 ${IMAPSYNC_USER1} \
     --password1 "${IMAPSYNC_PASSWORD1}" \
@@ -27,7 +26,7 @@ while true; do
 
   sleep 5
 
-  duplicity --progress /var/mail ${DUPLICITY_FTP_URL}/${SLOT}
+  duplicity /var/mail ${DUPLICITY_FTP_URL}/${SLOT}
 
   sleep ${IMAPSYNC_WAIT}
 done
